@@ -9,10 +9,9 @@ body{
   font-family: 'Recursive', sans-serif;
 }
 
-
-.welcome{
+.welcome, main{
   width: 100%;
-  height: 100vmax;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,16 +19,19 @@ body{
   background-color: #FB6B6B;
 }
 
+.welcome{
+  gap: 35px;
+}
+
 .welcome > img{
   width: 136px;
   height: 161px;
 }
 
-.welcome > h1{
+h1{
   font-family: 'Righteous', sans-serif;
   font-size: 36px;
   color: #FFFFFF;
-  margin: 35px 0;
 }
 
 .welcome > button{
@@ -42,6 +44,58 @@ body{
   border-radius: 5px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.15);
 }
+
+main > header{
+  width: 100%;
+  height: 153px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+header > img{
+  width: 52px;
+  height: 60px;
+}
+
+.closedQuestion{
+  width: 80%;
+  height: 65px;
+  background-color: #FFFFFF;
+  font-size: 16px;
+  font-weight: 700;
+  color: #333333;
+  padding: 0 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+  margin-bottom: 25px;
+}
+
+.closedQuestion > ion-icon{
+  font-size: 24px;
+  --ionicon-stroke-width: 60px;
+}
+
+main > footer{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background-color: #FFFFFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+}
+
 
 
 
