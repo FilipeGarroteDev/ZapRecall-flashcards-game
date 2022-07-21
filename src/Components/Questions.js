@@ -5,22 +5,26 @@ export default function Questions(){
     {
       id: 1,
       question: "O que é JSX?",
-      answer: "Uma extensão de linguagem do JavaScript"
+      answer: "Uma extensão de linguagem do JavaScript",
+      status: "closed"
     },
     {
       id: 2,
       question: "O que é JSX?",
-      answer: "Uma extensão de linguagem do JavaScript"
+      answer: "Uma extensão de linguagem do JavaScript",
+      status: "closed"
     },
     {
       id: 3,
       question: "O que é JSX?",
-      answer: "Uma extensão de linguagem do JavaScript"
+      answer: "Uma extensão de linguagem do JavaScript",
+      status: "closed"
     },
     {
       id: 4,
       question: "O que é JSX?",
-      answer: "Uma extensão de linguagem do JavaScript"
+      answer: "Uma extensão de linguagem do JavaScript",
+      status: "closed"
     },
     // {
     //   id: 5,
@@ -46,35 +50,64 @@ export default function Questions(){
 
   return (
     <ul className="questions">
-      {questionsArray.map(({id}, index) => (
-        <Question key={id} number={index+1}/>
-      ))}
+      {questionsArray.map(({id}, index) => 
+          <Question key={id} number={index+1} />
+      )}
     </ul>
   )
 }
 
 function Question({number, key}){
-  const [closedCard, setClosedCard] = React.useState("closedQuestion")
-  const [openedCard, setOpenedCard] = React.useState("openedQuestion hidden")
+    
+  const [closedQuestion, setClosedQuestion] = React.useState("closedQuestion")
+  const [openedQuestion, setOpenedQuestion] = React.useState("openedQuestion hidden")
   const [answer, setAnswer] = React.useState("answer hidden")
 
   return(
     <>
-      <li className={closedCard} key={key} onClick={() => {
-        setClosedCard("closedQuestion hidden")
-        setOpenedCard("openedQuestion")
+      <li className={closedQuestion} key={key} onClick={() => {
+        setClosedQuestion("closedQuestion hidden")
+        setOpenedQuestion("openedQuestion")
         }}>
         Pergunta {number}
         <ion-icon name="play-outline"></ion-icon>
       </li>
-      {/* <li className={openedCard} key={key}>
-        Pergunta {number}
-        <img src="./icons/setinha.png" alt="turn-card"/>
+      <li className={openedQuestion}>
+        Pergunta 1
+        <img src="./icons/setinha.png" alt="turn-card" onClick={() => {
+          setOpenedQuestion("openedQuestion hidden")
+          setAnswer("answer")
+        }}/>
       </li>
       <li className={answer} key={key}>
-        Pergunta {number}
-        <ion-icon name="play-outline"></ion-icon>
-      </li> */}
+        Blablablablablalbalb siuahgdiuosahd aoifhadsfds bsjhbdas
+        <div className="options">
+          <div className="option wrong">
+            Não lembrei
+          </div>
+          <div className="option warning">
+            Quase não lembrei
+          </div>
+          <div className="option correct">
+            Zap!
+          </div>
+        </div>
+      </li>
     </>
   )
 }
+
+// function Question(){
+//   return(
+//     <>
+//       <li className="openedQuestion">
+//         Pergunta 1
+//         <img src="./icons/setinha.png" alt="turn-card"/>
+//       </li>
+//       {/* <li className={answer} key={key}>
+//         Pergunta {number}
+//         <ion-icon name="play-outline"></ion-icon>
+//       </li> */}
+//     </>
+//       )
+// }

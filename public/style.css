@@ -7,9 +7,10 @@
 
 body{
   font-family: 'Recursive', sans-serif;
+  background-color: #FB6B6B;
 }
 
-.welcome, main{
+.welcome{
   width: 100%;
   height: 100vh;
   display: flex;
@@ -44,7 +45,7 @@ h1{
 
 main{
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background-color: #FB6B6B;
 }
 
@@ -55,9 +56,6 @@ main > header{
   align-items: center;
   justify-content: center;
   gap: 20px;
-  position: fixed;
-  top: 0;
-  left: 0;
 }
 
 header > img{
@@ -67,9 +65,11 @@ header > img{
 
 main > ul{
   width: 100%;
+  background-color: #FB6B6B;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 70px;
 }
 
 .closedQuestion{
@@ -93,7 +93,7 @@ main > ul{
   --ionicon-stroke-width: 60px;
 }
 
-.openedQuestion{
+.openedQuestion, .answer{
   width: 300px;
   height: 130px;
   background-color: #FFFFD4;
@@ -110,6 +110,40 @@ main > ul{
   position: absolute;
   bottom: 15px;
   right: 15px;
+}
+
+.options{
+  width: 270px;
+  position:absolute;
+  bottom: 8px;
+  left: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.option{
+  width: 85px;
+  height: 37px;
+  color: #FFFFFF;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  text-align: center;
+  padding: 10px;
+}
+
+.wrong{
+  background-color: #FF3030;
+}
+
+.warning{
+  background-color: #FF922E;
+}
+
+.correct{
+  background-color: #2FBE34;
 }
 
 main > footer{
