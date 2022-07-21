@@ -67,14 +67,14 @@ function Question({number, key}){
         Pergunta {number}
         <ion-icon name="play-outline"></ion-icon>
       </li>
-      <li className={openedCard} key={key}>
-        Pergunta fasdfdsaf asdf asdf asdfas fasfas fas sa fasf asf asf asf asf das {number}
+      {/* <li className={openedCard} key={key}>
+        Pergunta {number}
         <img src="./icons/setinha.png" alt="turn-card"/>
       </li>
       <li className={answer} key={key}>
         Pergunta {number}
         <ion-icon name="play-outline"></ion-icon>
-      </li>
+      </li> */}
     </>
   )
 }
