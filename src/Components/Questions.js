@@ -3,46 +3,34 @@ import React from "react"
 export default function Questions(){
   const questionsArray = [
     {
-      id: 1,
       question: "O que é JSX?",
       answer: "Uma extensão de linguagem do JavaScript",
-      status: "closed"
     },
     {
-      id: 2,
       question: "O que é JSX?",
       answer: "Uma extensão de linguagem do JavaScript",
-      status: "closed"
     },
     {
-      id: 3,
       question: "O que é JSX?",
       answer: "Uma extensão de linguagem do JavaScript",
-      status: "closed"
     },
     {
-      id: 4,
       question: "O que é JSX?",
       answer: "Uma extensão de linguagem do JavaScript",
-      status: "closed"
     },
     // {
-    //   id: 5,
     //   question: "O que é JSX?",
     //   answer: "Uma extensão de linguagem do JavaScript"
     // },
     // {
-    //   id: 6,
     //   question: "O que é JSX?",
     //   answer: "Uma extensão de linguagem do JavaScript"
     // },
     // {
-    //   id: 7,
     //   question: "O que é JSX?",
     //   answer: "Uma extensão de linguagem do JavaScript"
     // },
     // {
-    //   id: 8,
     //   question: "O que é JSX?",
     //   answer: "Uma extensão de linguagem do JavaScript"
     // },
@@ -50,45 +38,69 @@ export default function Questions(){
 
   return (
     <ul className="questions">
-      {questionsArray.map(({id}, index) => 
-          <Question key={id} number={index+1} />
+      {questionsArray.map((value, index) => 
+          <Question key={index} number={index+1} />
       )}
     </ul>
   )
 }
 
-function Question({number, key}){
-    
-  const [closedQuestion, setClosedQuestion] = React.useState("closedQuestion")
-  const [openedQuestion, setOpenedQuestion] = React.useState("openedQuestion hidden")
-  const [answer, setAnswer] = React.useState("answer hidden")
+function Question(){
+  const [isClosed, setIsClosed] = React.useState(true)
+  const [isAnswered, setIsAnswered] = React.useState(false)
+  const [icon, setIcon] = React.useState("")
 
+    {if(isAnswered){
+      return(
+      <>
+        <AnsweredCard icon={icon} setIcon={setIcon}/>
+      </>
+      )
+    }else {
+      return(
+        <>
+          {isClosed ? <ClosedCard isClosed={isClosed} setIsClosed={setIsClosed}/> : <OpenedCard isAnswered={isAnswered} setIsAnswered={setIsAnswered} icon={icon} setIcon={setIcon}/>}
+        </>
+        )
+    }}
+}
+
+function ClosedCard({setIsClosed, isClosed}){
+  return(
+    <li className="closedQuestion" onClick={() => {
+      setIsClosed(!isClosed)
+      }}>
+      Pergunta 1
+      <ion-icon name="play-outline"></ion-icon>
+    </li>
+      )
+}
+
+function OpenedCard({isAnswered, setIsAnswered, icon, setIcon}){
+  const [openedQuestion, setOpenedQuestion] = React.useState("openedQuestion")
+  const [answer, setAnswer] = React.useState("answer hidden")
   return(
     <>
-      <li className={closedQuestion} key={key} onClick={() => {
-        setClosedQuestion("closedQuestion hidden")
-        setOpenedQuestion("openedQuestion")
-        }}>
-        Pergunta {number}
-        <ion-icon name="play-outline"></ion-icon>
-      </li>
       <li className={openedQuestion}>
-        Pergunta 1
-        <img src="./icons/setinha.png" alt="turn-card" onClick={() => {
-          setOpenedQuestion("openedQuestion hidden")
-          setAnswer("answer")
-        }}/>
+          Pergunta 1
+          <img src="./icons/setinha.png" alt="turn-card" onClick={() => {
+            setOpenedQuestion("hidden")
+            setAnswer("answer")
+          }}/>
       </li>
-      <li className={answer} key={key}>
+      <li className={answer}>
         Blablablablablalbalb siuahgdiuosahd aoifhadsfds bsjhbdas
         <div className="options">
-          <div className="option wrong">
+          <div className="option wrong" onClick={() => {
+            setIsAnswered(!isAnswered)
+            setIcon("")
+            }}>
             Não lembrei
           </div>
-          <div className="option warning">
+          <div className="option warning" onClick={() => setIsAnswered(!isAnswered)}>
             Quase não lembrei
           </div>
-          <div className="option correct">
+          <div className="option correct" onClick={() => setIsAnswered(!isAnswered)}>
             Zap!
           </div>
         </div>
@@ -97,17 +109,11 @@ function Question({number, key}){
   )
 }
 
-// function Question(){
-//   return(
-//     <>
-//       <li className="openedQuestion">
-//         Pergunta 1
-//         <img src="./icons/setinha.png" alt="turn-card"/>
-//       </li>
-//       {/* <li className={answer} key={key}>
-//         Pergunta {number}
-//         <ion-icon name="play-outline"></ion-icon>
-//       </li> */}
-//     </>
-//       )
-// }
+function AnsweredCard({icon, setIcon}){
+  return(
+    <li className="answeredQuestion" style={`color: ${fontColor}`}>
+      Pergunta 1
+      <ion-icon name={icon}></ion-icon>
+    </li>
+      )
+}
