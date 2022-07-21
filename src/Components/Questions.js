@@ -49,17 +49,18 @@ function Question(){
   const [isClosed, setIsClosed] = React.useState(true)
   const [isAnswered, setIsAnswered] = React.useState(false)
   const [icon, setIcon] = React.useState("")
+  const [answerStyle, setAnswerStyle] = React.useState("")
 
     {if(isAnswered){
       return(
       <>
-        <AnsweredCard icon={icon} setIcon={setIcon}/>
+        <AnsweredCard icon={icon} answerStyle={answerStyle}/>
       </>
       )
     }else {
       return(
         <>
-          {isClosed ? <ClosedCard isClosed={isClosed} setIsClosed={setIsClosed}/> : <OpenedCard isAnswered={isAnswered} setIsAnswered={setIsAnswered} icon={icon} setIcon={setIcon}/>}
+          {isClosed ? <ClosedCard isClosed={isClosed} setIsClosed={setIsClosed}/> : <OpenedCard isAnswered={isAnswered} setIsAnswered={setIsAnswered} setAnswerStyle={setAnswerStyle} setIcon={setIcon}/>}
         </>
         )
     }}
@@ -76,7 +77,7 @@ function ClosedCard({setIsClosed, isClosed}){
       )
 }
 
-function OpenedCard({isAnswered, setIsAnswered, icon, setIcon}){
+function OpenedCard({isAnswered, setIsAnswered, setIcon, setAnswerStyle}){
   const [openedQuestion, setOpenedQuestion] = React.useState("openedQuestion")
   const [answer, setAnswer] = React.useState("answer hidden")
   return(
@@ -93,14 +94,23 @@ function OpenedCard({isAnswered, setIsAnswered, icon, setIcon}){
         <div className="options">
           <div className="option wrong" onClick={() => {
             setIsAnswered(!isAnswered)
-            setIcon("")
+            setIcon("close-circle")
+            setAnswerStyle("wrongSelected")
             }}>
             Não lembrei
           </div>
-          <div className="option warning" onClick={() => setIsAnswered(!isAnswered)}>
+          <div className="option almost" onClick={() => {
+            setIsAnswered(!isAnswered)
+            setIcon("help-circle")
+            setAnswerStyle("almostSelected")
+            }}>
             Quase não lembrei
           </div>
-          <div className="option correct" onClick={() => setIsAnswered(!isAnswered)}>
+          <div className="option correct" onClick={() => {
+            setIsAnswered(!isAnswered)
+            setIcon("checkmark-circle")
+            setAnswerStyle("correctSelected")
+            }}>
             Zap!
           </div>
         </div>
@@ -109,9 +119,9 @@ function OpenedCard({isAnswered, setIsAnswered, icon, setIcon}){
   )
 }
 
-function AnsweredCard({icon, setIcon}){
+function AnsweredCard({icon, answerStyle}){
   return(
-    <li className="answeredQuestion" style={`color: ${fontColor}`}>
+    <li className={`answeredQuestion ${answerStyle}`}>
       Pergunta 1
       <ion-icon name={icon}></ion-icon>
     </li>
