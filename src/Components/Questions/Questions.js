@@ -2,7 +2,7 @@ import React from "react"
 import "./style.css"
 import turnArrow from "../../assets/images/setinha.png"
 
-export default function Questions(){
+export default function Questions({setAnsweredIcons, answeredIcons}){
   const questionsArray = [
     {
       question: "O que é JSX?",
@@ -43,7 +43,7 @@ export default function Questions(){
       {questionsArray
       .sort(() => Math.random() - 0.5)
       .slice(0, 4)
-      .map(({question, answer}, index) => (<Question key={index} number={index+1} question={question} answer={answer}/>) )}
+      .map(({question, answer}, index) => (<Question key={index} number={index+1} question={question} answer={answer} answeredIcons={answeredIcons} setAnsweredIcons={setAnsweredIcons}/>) )}
     </ul>
   )
 }
@@ -51,7 +51,9 @@ export default function Questions(){
 function Question({
   number,
   question, 
-  answer
+  answer,
+  answeredIcons,
+  setAnsweredIcons
 }){
   const [isClosed, setIsClosed] = React.useState(true)
   const [isAnswered, setIsAnswered] = React.useState(false)
@@ -64,7 +66,7 @@ function Question({
       case false:
         return(
           <>
-            {isAnswered ? <AnsweredCard icon={icon} answerStyle={answerStyle} number={number}/> : <OpenedCard isAnswered={isAnswered} setIsAnswered={setIsAnswered} setAnswerStyle={setAnswerStyle} setIcon={setIcon} question={question} answer={answer}/>}
+            {isAnswered ? <AnsweredCard icon={icon} answerStyle={answerStyle} number={number}/> : <OpenedCard isAnswered={isAnswered} setIsAnswered={setIsAnswered} setAnswerStyle={setAnswerStyle} setIcon={setIcon} question={question} answer={answer} answeredIcons={answeredIcons} setAnsweredIcons={setAnsweredIcons}/>}
           </>
         )
         default:
@@ -83,7 +85,7 @@ function ClosedCard({setIsClosed, isClosed, number}){
       )
 }
 
-function OpenedCard({isAnswered, setIsAnswered, setIcon, setAnswerStyle, question, answer}){
+function OpenedCard({isAnswered, setIsAnswered, setIcon, setAnswerStyle, question, answer, answeredIcons, setAnsweredIcons}){
   const [openedQuestion, setOpenedQuestion] = React.useState("openedQuestion")
   const [answerCard, setAnswerCard] = React.useState("answerCard hidden")
   return(
@@ -102,6 +104,7 @@ function OpenedCard({isAnswered, setIsAnswered, setIcon, setAnswerStyle, questio
             setIsAnswered(!isAnswered)
             setIcon("close-circle")
             setAnswerStyle("wrongSelected")
+            setAnsweredIcons([...answeredIcons, "close-circle"])
             }}>
             Não lembrei
           </div>
@@ -109,6 +112,7 @@ function OpenedCard({isAnswered, setIsAnswered, setIcon, setAnswerStyle, questio
             setIsAnswered(!isAnswered)
             setIcon("help-circle")
             setAnswerStyle("almostSelected")
+            setAnsweredIcons([...answeredIcons, "help-circle"])
             }}>
             Quase não lembrei
           </div>
@@ -116,6 +120,7 @@ function OpenedCard({isAnswered, setIsAnswered, setIcon, setAnswerStyle, questio
             setIsAnswered(!isAnswered)
             setIcon("checkmark-circle")
             setAnswerStyle("correctSelected")
+            setAnsweredIcons([...answeredIcons, "checkmark-circle"])
             }}>
             Zap!
           </div>
