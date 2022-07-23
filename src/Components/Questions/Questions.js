@@ -9,90 +9,94 @@ export default function Questions(){
       answer: "Uma extensão de linguagem do JavaScript",
     },
     {
-      question: "O que é JSX?",
-      answer: "Uma extensão de linguagem do JavaScript",
+      question: "O React é __",
+      answer: "uma biblioteca JavaScript para construção de interfaces",
     },
     {
-      question: "O que é JSX?",
-      answer: "Uma extensão de linguagem do JavaScript",
+      question: "Componentes devem iniciar com __",
+      answer: "letra maiúscula",
     },
     {
-      question: "O que é JSX?",
-      answer: "Uma extensão de linguagem do JavaScript",
+      question: "Podemos colocar __ dentro do JSX",
+      answer: "expressões",
     },
-    // {
-    //   question: "O que é JSX?",
-    //   answer: "Uma extensão de linguagem do JavaScript"
-    // },
-    // {
-    //   question: "O que é JSX?",
-    //   answer: "Uma extensão de linguagem do JavaScript"
-    // },
-    // {
-    //   question: "O que é JSX?",
-    //   answer: "Uma extensão de linguagem do JavaScript"
-    // },
-    // {
-    //   question: "O que é JSX?",
-    //   answer: "Uma extensão de linguagem do JavaScript"
-    // },
+    {
+      question: "O ReactDOM nos ajuda __",
+      answer: "interagindo com a DOM para colocar componentes React na mesma"
+    },
+    {
+      question: "Usamos o npm para __",
+      answer: "gerenciar os pacotes necessários e suas dependências"
+    },
+    {
+      question: "Usamos props para __",
+      answer: "passar diferentes informações para componentes"
+    },
+    {
+      question: "Usamos estado (state) para __",
+      answer: "atualizadas devem renderizar a tela novamente"
+    },
   ]
 
   return (
     <ul className="questions">
-      {questionsArray.map((value, index) => 
-          <Question key={index} number={index+1} />
-      )}
+      {questionsArray
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 4)
+      .map(({question, answer}, index) => (<Question key={index} number={index+1} question={question} answer={answer}/>) )}
     </ul>
   )
 }
 
-function Question(){
+function Question({
+  number,
+  question, 
+  answer
+}){
   const [isClosed, setIsClosed] = React.useState(true)
   const [isAnswered, setIsAnswered] = React.useState(false)
   const [icon, setIcon] = React.useState("")
   const [answerStyle, setAnswerStyle] = React.useState("")
 
-    {if(isAnswered){
-      return(
-      <>
-        <AnsweredCard icon={icon} answerStyle={answerStyle}/>
-      </>
-      )
-    }else {
-      return(
-        <>
-          {isClosed ? <ClosedCard isClosed={isClosed} setIsClosed={setIsClosed}/> : <OpenedCard isAnswered={isAnswered} setIsAnswered={setIsAnswered} setAnswerStyle={setAnswerStyle} setIcon={setIcon}/>}
-        </>
+    switch(isClosed){
+      case true:
+        return(<ClosedCard isClosed={isClosed} setIsClosed={setIsClosed} number={number}/>);
+      case false:
+        return(
+          <>
+            {isAnswered ? <AnsweredCard icon={icon} answerStyle={answerStyle} number={number}/> : <OpenedCard isAnswered={isAnswered} setIsAnswered={setIsAnswered} setAnswerStyle={setAnswerStyle} setIcon={setIcon} question={question} answer={answer}/>}
+          </>
         )
-    }}
+        default:
+          return
+    }
 }
 
-function ClosedCard({setIsClosed, isClosed}){
+function ClosedCard({setIsClosed, isClosed, number}){
   return(
     <li className="closedQuestion" onClick={() => {
       setIsClosed(!isClosed)
       }}>
-      Pergunta 1
+      Pergunta {number}
       <ion-icon name="play-outline"></ion-icon>
     </li>
       )
 }
 
-function OpenedCard({isAnswered, setIsAnswered, setIcon, setAnswerStyle}){
+function OpenedCard({isAnswered, setIsAnswered, setIcon, setAnswerStyle, question, answer}){
   const [openedQuestion, setOpenedQuestion] = React.useState("openedQuestion")
-  const [answer, setAnswer] = React.useState("answer hidden")
+  const [answerCard, setAnswerCard] = React.useState("answerCard hidden")
   return(
     <>
       <li className={openedQuestion}>
-          Pergunta 1
+          {question}
           <img src={turnArrow} alt="turn-card" onClick={() => {
             setOpenedQuestion("hidden")
-            setAnswer("answer")
+            setAnswerCard("answerCard")
           }}/>
       </li>
-      <li className={answer}>
-        Blablablablablalbalb siuahgdiuosahd aoifhadsfds bsjhbdas
+      <li className={answerCard}>
+        {answer}
         <div className="options">
           <div className="option wrong" onClick={() => {
             setIsAnswered(!isAnswered)
@@ -121,10 +125,10 @@ function OpenedCard({isAnswered, setIsAnswered, setIcon, setAnswerStyle}){
   )
 }
 
-function AnsweredCard({icon, answerStyle}){
+function AnsweredCard({icon, answerStyle, number}){
   return(
     <li className={`answeredQuestion ${answerStyle}`}>
-      Pergunta 1
+      Pergunta {number}
       <ion-icon name={icon}></ion-icon>
     </li>
       )

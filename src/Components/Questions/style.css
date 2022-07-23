@@ -19,7 +19,7 @@
   --ionicon-stroke-width: 60px;
 }
 
-.openedQuestion, .answer{
+.openedQuestion, .answerCard{
   width: 300px;
   height: 130px;
   background-color: #FFFFD4;
