@@ -3,21 +3,21 @@ import "./style.css"
 import sadEmoji from "../../assets/images/sad.png"
 import partyEmoji from "../../assets/images/party.png"
 
-export default function Footer({answeredIcons}){
+export default function Footer({answeredIcons, screen, setScreen}){
 
   if(answeredIcons.length < 4){
     return(
       <StandardFooter answeredIcons={answeredIcons}/>
     )
   } else {
-    const correctCounter = answeredIcons.filter(icon => icon === "checkmark-circle")
+    const correctCounter = answeredIcons.filter(icon => icon !== "close-circle")
     return (
       correctCounter.length === 4 ? 
-      <FinalMessage answeredIcons={answeredIcons}>
+      <FinalMessage answeredIcons={answeredIcons} screen={screen} setScreen={setScreen}>
         <Congratulations/>
       </FinalMessage> 
       : 
-      <FinalMessage answeredIcons={answeredIcons}>
+      <FinalMessage answeredIcons={answeredIcons} screen={screen} setScreen={setScreen}>
         <Failed/>
       </FinalMessage> 
     )
@@ -37,7 +37,7 @@ function StandardFooter({answeredIcons}){
     )
 }
 
-function FinalMessage({children, answeredIcons}){
+function FinalMessage({children, answeredIcons, screen, setScreen}){
   return (
     <footer>
       <div>
@@ -46,7 +46,7 @@ function FinalMessage({children, answeredIcons}){
           <h3>{answeredIcons.length}/4 CONCLUÍDOS</h3>
           {answeredIcons.map((icon) => <ion-icon name={icon}></ion-icon>)}
         </div>
-        <div className="restartButton">REINICIAR RECALL</div>
+        <div className="restartButton" onClick={() => setScreen(!screen)}>REINICIAR RECALL</div>
       </div>
     </footer>  
   )

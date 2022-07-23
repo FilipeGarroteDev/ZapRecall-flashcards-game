@@ -9,7 +9,7 @@ export default function App(){
 
   return (
     <>
-      {screen ? <WelcomeScreen screen={screen} setScreen={setScreen}/> : <MainPage />}
+      {screen ? <WelcomeScreen screen={screen} setScreen={setScreen}/> : <MainPage  screen={screen} setScreen={setScreen}/>}
     </>
   )
 }
