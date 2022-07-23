@@ -1,0 +1,45 @@
+.welcome{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #FB6B6B;
+  gap: 35px;
+}
+
+.welcome > img{
+  width: 136px;
+  height: 161px;
+}
+
+h1{
+  font-family: 'Righteous', sans-serif;
+  font-size: 36px;
+  color: #FFFFFF;
+}
+
+.welcome > button{
+  width: 246px;
+  height: 54px;
+  background-color: #FFFFFF;
+  color: #d70900;
+  font-size: 18px;
+  border: 1px solid #D70900;
+  border-radius: 5px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.15);
+}
+
+@media (min-width: 615px){
+
+  h1{
+    font-size: 64px;
+  }
+
+  header > img{
+    width: 60px;
+    height: 80px;
+    margin-right: 15px;
+  }
+}

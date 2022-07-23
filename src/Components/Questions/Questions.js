@@ -1,4 +1,6 @@
 import React from "react"
+import "./style.css"
+import turnArrow from "../../assets/images/setinha.png"
 
 export default function Questions(){
   const questionsArray = [
@@ -84,7 +86,7 @@ function OpenedCard({isAnswered, setIsAnswered, setIcon, setAnswerStyle}){
     <>
       <li className={openedQuestion}>
           Pergunta 1
-          <img src="./icons/setinha.png" alt="turn-card" onClick={() => {
+          <img src={turnArrow} alt="turn-card" onClick={() => {
             setOpenedQuestion("hidden")
             setAnswer("answer")
           }}/>

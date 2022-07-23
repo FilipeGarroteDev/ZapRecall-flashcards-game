@@ -1,0 +1,96 @@
+.closedQuestion, .answeredQuestion{
+  width: 80%;
+  height: 65px;
+  background-color: #FFFFFF;
+  font-size: 16px;
+  font-weight: 700;
+  color: #333333;
+  padding: 0 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+  margin-bottom: 25px;
+}
+
+.closedQuestion > ion-icon, .answeredQuestion > ion-icon{
+  font-size: 24px;
+  --ionicon-stroke-width: 60px;
+}
+
+.openedQuestion, .answer{
+  width: 300px;
+  height: 130px;
+  background-color: #FFFFD4;
+  padding: 15px;
+  position: relative;
+  margin-bottom: 25px;
+  border-radius: 5px;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+}
+
+.openedQuestion > img{
+  width: 30px;
+  height: 20px;
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+}
+
+.options{
+  width: 270px;
+  position:absolute;
+  bottom: 8px;
+  left: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.option{
+  width: 85px;
+  height: 37px;
+  color: #FFFFFF;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  text-align: center;
+  padding: 10px;
+}
+
+.wrong{
+  background-color: #FF3030;
+}
+
+.almost{
+  background-color: #FF922E;
+}
+
+.correct{
+  background-color: #2FBE34;
+}
+
+.wrongSelected{
+  text-decoration: line-through;
+  color: #FF3030;
+}
+
+.almostSelected{
+  text-decoration: line-through;
+  color: #FF922E;
+}
+
+.correctSelected{
+  text-decoration: line-through;
+  color: #2FBE34;
+}
+
+
+@media (min-width: 615px){
+  .closedQuestion{
+    width: 560px;
+  }
+
+}

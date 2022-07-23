@@ -1,6 +1,8 @@
 import React from "react";
-import WelcomeScreen from "./WelcomeScreen";
-import MainPage from "./MainPage";
+import "../../assets/css/reset.css"
+import WelcomeScreen from "../WelcomeScreen/WelcomeScreen";
+import MainPage from "../MainPage/MainPage";
+import "./style.css"
 
 export default function App(){
   const [screen, setScreen] = React.useState(true)
