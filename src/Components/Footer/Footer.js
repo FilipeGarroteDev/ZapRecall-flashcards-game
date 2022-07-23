@@ -3,16 +3,17 @@ import "./style.css"
 import sadEmoji from "../../assets/images/sad.png"
 import partyEmoji from "../../assets/images/party.png"
 
-export default function Footer({answeredIcons, screen, setScreen}){
+export default function Footer({answeredIcons, screen, setScreen, goal}){
 
   if(answeredIcons.length < 4){
     return(
       <StandardFooter answeredIcons={answeredIcons}/>
     )
   } else {
-    const correctCounter = answeredIcons.filter(icon => icon !== "close-circle")
+    const answerCounter = answeredIcons.filter(icon => icon !== "close-circle")
+    const correctCounter = answeredIcons.filter(icon => icon === "checkmark-circle")
     return (
-      correctCounter.length === 4 ? 
+      answerCounter.length === 4 && correctCounter.length >= goal ? 
       <FinalMessage answeredIcons={answeredIcons} screen={screen} setScreen={setScreen}>
         <Congratulations/>
       </FinalMessage> 
