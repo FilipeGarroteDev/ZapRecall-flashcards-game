@@ -4,42 +4,76 @@ import sadEmoji from "../../assets/images/sad.png"
 import partyEmoji from "../../assets/images/party.png"
 
 export default function Footer({answeredIcons}){
-    {if (answeredIcons.length < 4){
-      return (
-        <footer>
-          <h3>{answeredIcons.length}/4 CONCLUÍDOS</h3>
-          <div className="iconContainer">
+
+  if(answeredIcons.length < 4){
+    return(
+      <StandardFooter answeredIcons={answeredIcons}/>
+    )
+  } else {
+    const correctCounter = answeredIcons.filter(icon => icon === "checkmark-circle")
+    return (
+      correctCounter.length === 4 ? 
+      <FinalMessage answeredIcons={answeredIcons}>
+        <Congratulations/>
+      </FinalMessage> 
+      : 
+      <FinalMessage answeredIcons={answeredIcons}>
+        <Failed/>
+      </FinalMessage> 
+    )
+  }
+}
+
+function StandardFooter({answeredIcons}){
+    return (
+      <footer>
+        <div>
+          <div className="iconCounter">
+            <h3>{answeredIcons.length}/4 CONCLUÍDOS</h3>
             {answeredIcons.map((icon) => <ion-icon name={icon}></ion-icon>)}
           </div>
-        </footer>
-      )
-    } else {
-      const correctAnswers = answeredIcons.filter(icon => icon === "checkmark-circle")
-      return(correctAnswers.length === 4 ?
-        <footer>
-          <div>
-            <img src={partyEmoji}/>
-            <h4>Parabéns!</h4>
-          </div>
-          <span>Você não esqueceu de nenhum flashcard!</span>
+        </div>
+      </footer>    
+    )
+}
+
+function FinalMessage({children, answeredIcons}){
+  return (
+    <footer>
+      <div>
+        {children}
+        <div className="iconCounter">
           <h3>{answeredIcons.length}/4 CONCLUÍDOS</h3>
-          <div className="iconContainer">
-            {answeredIcons.map((icon) => <ion-icon name={icon}></ion-icon>)}
-          </div>
-        </footer>
-      :
-        <footer>
-          <div>
-            <img src={sadEmoji}/>
-            <h4>Putz...</h4>
-          </div>
-          <span>Ainda faltam alguns... Mas não desanime!</span>
-          <h3>{answeredIcons.length}/4 CONCLUÍDOS</h3>
-          <div className="iconContainer">
-            {answeredIcons.map((icon) => <ion-icon name={icon}></ion-icon>)}
-          </div>
-        </footer>)
-    }}
-      
+          {answeredIcons.map((icon) => <ion-icon name={icon}></ion-icon>)}
+        </div>
+        <div className="restartButton">REINICIAR RECALL</div>
+      </div>
+    </footer>  
+  )
+}
+
+function Congratulations(){
+  return(
+    <>
+      <div className="footerTitle">
+        <img src={partyEmoji} alt="party-emoji"/>
+        <h4>Parabéns!</h4>
+      </div>
+      <span>Você não esqueceu de nenhum flashcard!</span>
+    </>
+  )
+}
+
+function Failed(){
+
+  return(
+    <>
+      <div className="footerTitle">
+        <img src={sadEmoji} alt="sad-emoji"/>
+        <h4>Putz...</h4>
+      </div>
+      <span>Ainda faltam alguns... Mas não desanime!</span>
+    </>
+  )
 
 }
