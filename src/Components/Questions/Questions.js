@@ -1,51 +1,40 @@
 import React from "react"
 import "./style.css"
 import turnArrow from "../../assets/images/setinha.png"
+import decks from "../Decks"
 
-export default function Questions({setAnsweredIcons, answeredIcons}){
-  const questionsArray = [
-    {
-      question: "O que é JSX?",
-      answer: "Uma extensão de linguagem do JavaScript",
-    },
-    {
-      question: "O React é __",
-      answer: "uma biblioteca JavaScript para construção de interfaces",
-    },
-    {
-      question: "Componentes devem iniciar com __",
-      answer: "letra maiúscula",
-    },
-    {
-      question: "Podemos colocar __ dentro do JSX",
-      answer: "expressões",
-    },
-    {
-      question: "O ReactDOM nos ajuda __",
-      answer: "interagindo com a DOM para colocar componentes React na mesma"
-    },
-    {
-      question: "Usamos o npm para __",
-      answer: "gerenciar os pacotes necessários e suas dependências"
-    },
-    {
-      question: "Usamos props para __",
-      answer: "passar diferentes informações para componentes"
-    },
-    {
-      question: "Usamos estado (state) para __",
-      answer: "atualizadas devem renderizar a tela novamente"
-    },
-  ]
-
-  return (
-    <ul className="questions">
-      {questionsArray
-      .sort(() => Math.random() - 0.5)
-      .slice(0, 4)
-      .map(({question, answer}, index) => (<Question key={index} number={index+1} question={question} answer={answer} answeredIcons={answeredIcons} setAnsweredIcons={setAnsweredIcons}/>) )}
-    </ul>
-  )
+export default function Questions({setAnsweredIcons, answeredIcons, deck}){
+  switch (deck){
+    case "deckReact":
+      return (
+        <ul className="questions">
+          {decks.deckReact
+          .sort(() => Math.random() - 0.5)
+          .slice(0, 4)
+          .map(({question, answer}, index) => (<Question key={index} number={index+1} question={question} answer={answer} answeredIcons={answeredIcons} setAnsweredIcons={setAnsweredIcons}/>) )}
+        </ul>
+      )
+    case "deckHTML":
+      return (
+        <ul className="questions">
+        {decks.deckHTML
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 4)
+        .map(({question, answer}, index) => (<Question key={index} number={index+1} question={question} answer={answer} answeredIcons={answeredIcons} setAnsweredIcons={setAnsweredIcons}/>) )}
+      </ul>
+      )
+    case "deckDireito":
+      return (
+        <ul className="questions">
+        {decks.deckDireito
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 4)
+        .map(({question, answer}, index) => (<Question key={index} number={index+1} question={question} answer={answer} answeredIcons={answeredIcons} setAnsweredIcons={setAnsweredIcons}/>) )}
+      </ul>
+      )
+    default:
+      return 
+  }
 }
 
 function Question({

@@ -5,7 +5,7 @@ import miniLogo from "../../assets/images/logo.png";
 import Footer from "../Footer/Footer";
 
 
-export default function MainPage({ screen, setScreen, goal }){
+export default function MainPage({ screen, setScreen, goal, deck }){
   const [answeredIcons, setAnsweredIcons] = React.useState([])
 
   return (
@@ -14,7 +14,7 @@ export default function MainPage({ screen, setScreen, goal }){
         <img src={miniLogo} alt="mini-logo ZapRecall"/>
         <h1>ZapRecall</h1>
       </header>
-      <Questions setAnsweredIcons={setAnsweredIcons} answeredIcons={answeredIcons}/>
+      <Questions setAnsweredIcons={setAnsweredIcons} answeredIcons={answeredIcons} deck={deck}/>
       <Footer answeredIcons={answeredIcons} screen={screen} setScreen={setScreen} goal={goal}/>
     </main>
 
