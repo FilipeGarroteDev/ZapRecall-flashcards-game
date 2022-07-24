@@ -75,15 +75,15 @@ function ClosedCard({setIsClosed, isClosed, number}){
 }
 
 function OpenedCard({isAnswered, setIsAnswered, setIcon, setAnswerStyle, question, answer, answeredIcons, setAnsweredIcons}){
-  const [openedQuestion, setOpenedQuestion] = React.useState("openedQuestion")
-  const [answerCard, setAnswerCard] = React.useState("answerCard hidden")
+  const [openedQuestion, setOpenedQuestion] = React.useState("flashcard openedQuestion")
+  const [answerCard, setAnswerCard] = React.useState("hidden")
   return(
     <>
       <li className={openedQuestion}>
           {question}
           <img src={turnArrow} alt="turn-card" onClick={() => {
             setOpenedQuestion("hidden")
-            setAnswerCard("answerCard")
+            setAnswerCard("flashcard answerCard")
           }}/>
       </li>
       <li className={answerCard}>
