@@ -22,7 +22,7 @@ footer > div{
   align-items: center;
   text-align: center;
   gap:15px;
-  padding-top: 8px;
+  padding-top: 5px;
 }
 
 ion-icon{
@@ -66,4 +66,38 @@ ion-icon[name=checkmark-circle]{
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
 }
+
+.restartButton:hover{
+  cursor:pointer;
+  transform:scale(1.03);
+  filter: brightness(0.8)
+}
+
+@media (min-width: 615px){
+  main > footer{
+    font-size: 26px;
+  }
+
+  footer > div{
+    width: 500px;
+    padding-top: 0;
+  }
+
+  .footerTitle > img{
+    width: 38px;
+  }
+
+  footer ion-icon{
+    font-size: 30px;
+  }
+
+  .restartButton{
+    width: 250px;
+    height: 45px;
+    font-size: 18px;
+  }
+
+}
+
