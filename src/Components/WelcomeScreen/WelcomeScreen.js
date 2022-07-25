@@ -1,8 +1,7 @@
 import React from "react"
 import "./style.css"
 import logo from "../../assets/images/logo.png"
-import loadingIcon from "../../assets/images/loading.gif"
-import miniLogo from "../../assets/images/logo.png";
+import Loading from "../Loading/Loading";
 
 export default function WelcomeScreen({screen, setScreen, setGoal, setDeck, goal, deck}){
 
@@ -31,7 +30,7 @@ export default function WelcomeScreen({screen, setScreen, setGoal, setDeck, goal
         <button className={buttonStatus} onClick={() => {
           if(buttonStatus !== "invalid"){
             if (deck !== "Escolha seu deck" && goal > 0 && goal <= 4){
-            setTimeout(() => setScreen(!screen), 3000)
+            setTimeout(() => setScreen(!screen), 2000)
             setWelcome("hidden")
             setLoadingPage("loadingPage")
           } else { 
@@ -40,19 +39,7 @@ export default function WelcomeScreen({screen, setScreen, setGoal, setDeck, goal
           }
         } >Iniciar Recall!</button>
       </div>
-      <div className={loadingPage}>
-        <header>
-          <img src={miniLogo} alt="mini-logo ZapRecall"/>
-          <h1>ZapRecall</h1>
-        </header>
-        <div className="loading">
-          <div>
-            <img src={loadingIcon} alt="loading"/>
-            <h3>Loading...</h3>
-          </div>
-          <h4>Prepare a cabeça, começamos em instantes!!</h4>
-        </div>
-      </div>
+      <Loading loadingPage={loadingPage}/>
     </>
   )
 }
