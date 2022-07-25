@@ -68,7 +68,7 @@ input::placeholder{
 
 header{
   width: 100%;
-  height: 100px;
+  height: 153px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -145,5 +145,31 @@ header > img{
   .welcome > button, .welcome > .invalid{
     margin-top: 20px;
     font-size: 20px;
+  }
+
+  .loading > img{
+    width: 300px;
+    margin-left: 30px;
+  }
+  
+  .loading > div{
+    width: 400px;
+    border: 8px dashed white;
+    margin-top: 60px;
+    margin-bottom: 80px;
+  }
+  
+  .loading h3{
+    font-family: 'Righteous', sans-serif;
+    font-size: 40px;
+    color: #FFFFFF;
+    margin-bottom: 50px;
+  }
+  
+  .loading h4{
+    font-size: 28px;
+    color: #FFFFFF;
+    text-align: center;
+    font-weight: 700;
   }
 }

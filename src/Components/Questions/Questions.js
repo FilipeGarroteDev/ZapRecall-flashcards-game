@@ -17,20 +17,20 @@ export default function Questions({setAnsweredIcons, answeredIcons, deck}){
     case "deckHTML":
       return (
         <ul className="questions">
-        {decks.deckHTML
-        .sort(() => Math.random() - 0.5)
-        .slice(0, 4)
-        .map(({question, answer}, index) => (<Question key={index} number={index+1} question={question} answer={answer} answeredIcons={answeredIcons} setAnsweredIcons={setAnsweredIcons}/>) )}
-      </ul>
+          {decks.deckHTML
+          .sort(() => Math.random() - 0.5)
+          .slice(0, 4)
+          .map(({question, answer}, index) => (<Question key={index} number={index+1} question={question} answer={answer} answeredIcons={answeredIcons} setAnsweredIcons={setAnsweredIcons}/>) )}
+        </ul>
       )
     case "deckDireito":
       return (
         <ul className="questions">
-        {decks.deckDireito
-        .sort(() => Math.random() - 0.5)
-        .slice(0, 4)
-        .map(({question, answer}, index) => (<Question key={index} number={index+1} question={question} answer={answer} answeredIcons={answeredIcons} setAnsweredIcons={setAnsweredIcons}/>) )}
-      </ul>
+          {decks.deckDireito
+          .sort(() => Math.random() - 0.5)
+          .slice(0, 4)
+          .map(({question, answer}, index) => (<Question key={index} number={index+1} question={question} answer={answer} answeredIcons={answeredIcons} setAnsweredIcons={setAnsweredIcons}/>) )}
+        </ul>
       )
     default:
       return 
@@ -75,15 +75,15 @@ function ClosedCard({setIsClosed, isClosed, number}){
 }
 
 function OpenedCard({isAnswered, setIsAnswered, setIcon, setAnswerStyle, question, answer, answeredIcons, setAnsweredIcons}){
-  const [openedQuestion, setOpenedQuestion] = React.useState("flashcard openedQuestion")
-  const [answerCard, setAnswerCard] = React.useState("hidden")
+  const [openedQuestion, setOpenedQuestion] = React.useState("card")
+  const [answerCard, setAnswerCard] = React.useState("card answerCard")
   return(
-    <>
+    <div className="flashcard">
       <li className={openedQuestion}>
           {question}
           <img src={turnArrow} alt="turn-card" onClick={() => {
-            setOpenedQuestion("hidden")
-            setAnswerCard("flashcard answerCard")
+            setOpenedQuestion("card openedQuestion")
+            setAnswerCard("card")
           }}/>
       </li>
       <li className={answerCard}>
@@ -115,7 +115,7 @@ function OpenedCard({isAnswered, setIsAnswered, setIcon, setAnswerStyle, questio
           </div>
         </div>
       </li>
-    </>
+    </div>
   )
 }
 
