@@ -2,39 +2,38 @@ import React from "react"
 import "./style.css"
 import turnArrow from "../../assets/images/setinha.png"
 import decks from "../Decks"
+let deckReady
 
 export default function Questions({setAnsweredIcons, answeredIcons, deck}){
-  switch (deck){
-    case "deckReact":
-      return (
-        <ul className="questions">
-          {decks.deckReact
-          .sort(() => Math.random() - 0.5)
-          .slice(0, 4)
-          .map(({question, answer}, index) => (<Question key={index} number={index+1} question={question} answer={answer} answeredIcons={answeredIcons} setAnsweredIcons={setAnsweredIcons}/>) )}
-        </ul>
-      )
-    case "deckHTML":
-      return (
-        <ul className="questions">
-          {decks.deckHTML
-          .sort(() => Math.random() - 0.5)
-          .slice(0, 4)
-          .map(({question, answer}, index) => (<Question key={index} number={index+1} question={question} answer={answer} answeredIcons={answeredIcons} setAnsweredIcons={setAnsweredIcons}/>) )}
-        </ul>
-      )
-    case "deckDireito":
-      return (
-        <ul className="questions">
-          {decks.deckDireito
-          .sort(() => Math.random() - 0.5)
-          .slice(0, 4)
-          .map(({question, answer}, index) => (<Question key={index} number={index+1} question={question} answer={answer} answeredIcons={answeredIcons} setAnsweredIcons={setAnsweredIcons}/>) )}
-        </ul>
-      )
-    default:
-      return 
+  const [blockRender, setBlockRender] = React.useState(false)
+
+  if (blockRender === false){
+    switch (deck){
+      case "deckReact":
+        deckReady = decks.deckReact
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 4)
+        break
+      case "deckHTML":
+        deckReady = decks.deckHTML
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 4)
+        break
+      case "deckDireito":
+        deckReady = decks.deckDireito
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 4)
+        break
+      default:
+        return 
+    }
   }
+
+  return (
+    <ul>
+      {deckReady.map(({question, answer}, index) => <Question key={index} number={index+1} question={question} answer={answer} answeredIcons={answeredIcons} setAnsweredIcons={setAnsweredIcons} setBlockRender={setBlockRender}/> )}
+    </ul>
+  )
 }
 
 function Question({
@@ -42,7 +41,8 @@ function Question({
   question, 
   answer,
   answeredIcons,
-  setAnsweredIcons
+  setAnsweredIcons,
+  setBlockRender
 }){
   const [isClosed, setIsClosed] = React.useState(true)
   const [isAnswered, setIsAnswered] = React.useState(false)
@@ -51,7 +51,7 @@ function Question({
 
     switch(isClosed){
       case true:
-        return(<ClosedCard isClosed={isClosed} setIsClosed={setIsClosed} number={number}/>);
+        return(<ClosedCard isClosed={isClosed} setIsClosed={setIsClosed} number={number} setBlockRender={setBlockRender}/>);
       case false:
         return(
           <>
@@ -63,10 +63,11 @@ function Question({
     }
 }
 
-function ClosedCard({setIsClosed, isClosed, number}){
+function ClosedCard({setIsClosed, isClosed, number, setBlockRender}){
   return(
     <li className="closedQuestion" onClick={() => {
       setIsClosed(!isClosed)
+      setBlockRender(true)
       }}>
       Pergunta {number}
       <ion-icon name="play-outline"></ion-icon>
