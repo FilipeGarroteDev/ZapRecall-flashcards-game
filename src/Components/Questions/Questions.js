@@ -5,9 +5,9 @@ import decks from "../Decks"
 let deckReady
 
 export default function Questions({setAnsweredIcons, answeredIcons, deck}){
-  const [blockRender, setBlockRender] = React.useState(false)
+  const [blockedRender, setBlockedRender] = React.useState(false)
 
-  if (blockRender === false){
+  if (blockedRender === false){
     switch (deck){
       case "deckReact":
         deckReady = decks.deckReact
@@ -31,7 +31,7 @@ export default function Questions({setAnsweredIcons, answeredIcons, deck}){
 
   return (
     <ul>
-      {deckReady.map(({question, answer}, index) => <Question key={index} number={index+1} question={question} answer={answer} answeredIcons={answeredIcons} setAnsweredIcons={setAnsweredIcons} setBlockRender={setBlockRender}/> )}
+      {deckReady.map(({question, answer}, index) => <Question key={index} number={index+1} question={question} answer={answer} answeredIcons={answeredIcons} setAnsweredIcons={setAnsweredIcons} setBlockedRender={setBlockedRender}/> )}
     </ul>
   )
 }
@@ -42,7 +42,7 @@ function Question({
   answer,
   answeredIcons,
   setAnsweredIcons,
-  setBlockRender
+  setBlockedRender
 }){
   const [isClosed, setIsClosed] = React.useState(true)
   const [isAnswered, setIsAnswered] = React.useState(false)
@@ -51,7 +51,7 @@ function Question({
 
     switch(isClosed){
       case true:
-        return(<ClosedCard isClosed={isClosed} setIsClosed={setIsClosed} number={number} setBlockRender={setBlockRender}/>);
+        return(<ClosedCard isClosed={isClosed} setIsClosed={setIsClosed} number={number} setBlockedRender={setBlockedRender}/>);
       case false:
         return(
           <>
@@ -63,11 +63,11 @@ function Question({
     }
 }
 
-function ClosedCard({setIsClosed, isClosed, number, setBlockRender}){
+function ClosedCard({setIsClosed, isClosed, number, setBlockedRender}){
   return(
     <li className="closedQuestion" onClick={() => {
       setIsClosed(!isClosed)
-      setBlockRender(true)
+      setBlockedRender(true)
       }}>
       Pergunta {number}
       <ion-icon name="play-outline"></ion-icon>

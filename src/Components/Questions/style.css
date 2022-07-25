@@ -63,7 +63,7 @@
   right: 15px;
 }
 
-.openedQuestion > img:hover{
+.card > img:hover{
   cursor: pointer;
 }
 
