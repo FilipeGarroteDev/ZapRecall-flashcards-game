@@ -31,7 +31,7 @@ function StandardFooter({answeredIcons}){
         <div>
           <div className="iconCounter">
             <h3>{answeredIcons.length}/4 CONCLUÍDOS</h3>
-            {answeredIcons.map((icon) => <ion-icon name={icon}></ion-icon>)}
+            {answeredIcons.map((icon, index) => <ion-icon key={index} name={icon}></ion-icon>)}
           </div>
         </div>
       </footer>    
@@ -45,7 +45,7 @@ function FinalMessage({children, answeredIcons, screen, setScreen}){
         {children}
         <div className="iconCounter">
           <h3>{answeredIcons.length}/4 CONCLUÍDOS</h3>
-          {answeredIcons.map((icon) => <ion-icon name={icon}></ion-icon>)}
+          {answeredIcons.map((icon, index) => <ion-icon key={index} name={icon}></ion-icon>)}
         </div>
         <div className="restartButton" onClick={() => setScreen(!screen)}>REINICIAR RECALL</div>
       </div>
